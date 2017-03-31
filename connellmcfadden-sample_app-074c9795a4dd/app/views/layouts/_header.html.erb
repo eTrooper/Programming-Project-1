@@ -1,0 +1,20 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to image_tag("infakestorLOGOresized.png", alt: "INFAKESTOR logo"),
+            root_path, id: "logoimg" %>
+        <%= link_to "INFAKESTOR"  , root_path, id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Home",   root_path %></li>
+            <li><%= link_to "Help",   help_path %></li>
+            <% if logged_in? %>
+              <li><%= link_to image_tag("user_icon_small.png", alt: "Profile")+ current_user.name,
+            current_user %></li>
+            
+            <% else%>
+              <li><%= link_to "Log in", 'login' %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
