@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :money, :stockArray)
     end
     
     # Confirms a logged-in user.
@@ -63,6 +63,6 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless current_user?(@user)
     end
 
- 
+
   
 end

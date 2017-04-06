@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many:stocks
+  
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   
@@ -39,5 +41,8 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
+  
+  
+  
 
 end

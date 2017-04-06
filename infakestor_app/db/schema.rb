@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404074644) do
+ActiveRecord::Schema.define(version: 20170406204845) do
+
+  create_table "stocks", force: :cascade do |t|
+    t.string   "ticker",     limit: 32, null: false
+    t.string   "symbol"
+    t.float    "ask"
+    t.float    "bid"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +28,9 @@ ActiveRecord::Schema.define(version: 20170404074644) do
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
     t.string   "remember_digest"
+    t.float    "money"
+    t.float    "netWorth"
+    t.string   "stockArray"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
