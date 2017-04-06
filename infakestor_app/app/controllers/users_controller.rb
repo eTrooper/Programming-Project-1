@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
   
+  def dashboard
+    @user = User.find(params[:id])
+  end
+  
   def index
     @users = User.paginate(page: params[:page])  
   end
