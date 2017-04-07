@@ -8,6 +8,22 @@
       <h2>
         <%= @user.email %>
       </h2>
+      <p>
+        </br>
+        <br>Cash Available $<%= @user.money %></br>
+        <br>Net Worth $ <%= @user.netWorth %></br>
+        <br>Stocks Owned: <%= @user.stockArray %></br>
+      </p>
+      
+      <%= form_for @user do |f| %>
+        <label>Add</label>
+        <%= f.radio_button :money,  100 %>
+        
+        <%= f.submit "Save" %>
+        
+      <% end %>  
+
+
     </section>
   </aside>
 </div>
