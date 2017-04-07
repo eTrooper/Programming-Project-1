@@ -1,0 +1,17 @@
+<% provide(:title, 'StockList') %>
+<h1>Stock List!</h1>
+
+<%= will_paginate %>
+
+<ul class="stocklist">
+  <% @stocks.each do |stock| %>
+    <li>
+      
+         <%= link_to stock.name, stock %>
+         <%=stock.ticker%>
+         <%=stock.ask%>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>
