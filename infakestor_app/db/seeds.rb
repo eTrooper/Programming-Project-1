@@ -5,7 +5,9 @@ csv = CSV.parse(csv_text, :headers => false, :encoding => 'ISO-8859-1')
 User.create!(name:  "Example User",
             email: "example@railstutorial.org",
             password:              "foobar",
-            password_confirmation: "foobar")
+            password_confirmation: "foobar",
+            cash: 1000000,
+            netWorth: 1000000)
 
 99.times do |n|
   name  = Faker::Name.name
@@ -14,7 +16,9 @@ User.create!(name:  "Example User",
   User.create!(name:  name,
               email: email,
               password:              password,
-              password_confirmation: password)
+              password_confirmation: password,
+              cash: 1000000,
+              netWorth: 1000000)
 end
 
 csv.each do |row|
