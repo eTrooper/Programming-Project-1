@@ -21,20 +21,46 @@ User.create!(name:  "Example User",
               netWorth: 1000000)
 end
 
+i = 0
+count = 0
+tempTickers = ''
+
 csv.each do |row|
-        s = Stock.new
-        suffixASX = [row, 'AX'].join('.')
-        tempQuote = StockQuote::Stock.quote(suffixASX, nil, nil, ['Symbol','Name','Ask'])
+        if i>=300 || csv.length - 1 == count
+            
+            tempQuote = StockQuote::Stock.quote(tempTickers, nil, nil, ['Symbol','Name','Ask'])
+            
+            tempQuote.each do |quote|
+            s = Stock.new
+            s.name = quote.Name
+            s.ticker = quote.Symbol
+            s.ask = quote.Ask
+                if quote.success?
+                    s.save
+                    puts "#{s.name}, #{s.ticker}, #{s.ask} saved" 
+                end
+                
+            end
+            
+                
+                
+            count+=1    
+            i=0
+            tempTickers = ''
         
-        s.name = tempQuote.Name
-        s.ticker = row
-        s.ask = tempQuote.Ask
-    if tempQuote.success?
-        s.save
-        puts "#{s.name}, #{s.ticker}, #{s.ask} saved"        
+        else
+            suffixASX = [row, 'AX'].join('.')
+            tempTickers = [tempTickers, suffixASX].join(',')
+            i+=1
+            count+=1
+        end
+        
+        
+        
+        
+            
+              
     end
 
-end
-        
         
 
