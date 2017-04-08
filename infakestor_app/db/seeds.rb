@@ -1,4 +1,8 @@
 require 'csv'
+
+#placeholder used for cash and netWorth calculations
+cashNetWorth = 1000000
+
 csv_text = File.read(Rails.root.join('db', 'seeds', 'Tickers.csv'))
 csv = CSV.parse(csv_text, :headers => false, :encoding => 'ISO-8859-1')
 
@@ -6,8 +10,8 @@ User.create!(name:  "Example User",
             email: "example@railstutorial.org",
             password:              "foobar",
             password_confirmation: "foobar",
-            cash: 1000000,
-            netWorth: 1000000)
+            cash: cashNetWorth,
+            netWorth: cashNetWorth)
 
 99.times do |n|
   name  = Faker::Name.name
@@ -17,8 +21,8 @@ User.create!(name:  "Example User",
               email: email,
               password:              password,
               password_confirmation: password,
-              cash: 1000000,
-              netWorth: 1000000)
+              cash: cashNetWorth,
+              netWorth: cashNetWorth)
 end
 
 csv.each do |row|
@@ -27,7 +31,7 @@ csv.each do |row|
         tempQuote = StockQuote::Stock.quote(suffixASX, nil, nil, ['Symbol','Name','Ask'])
         
         s.name = tempQuote.Name
-        s.ticker = row
+        s.ticker = tempQuote.Symbol
         s.ask = tempQuote.Ask
     if tempQuote.success?
         s.save

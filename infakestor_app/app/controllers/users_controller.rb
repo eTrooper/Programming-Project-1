@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation, :cash => 1000000, :netWorth => 1000000)
+                                   :password_confirmation, :cash = 1000000, :netWorth = 1000000)
     end
     
     # Confirms a logged-in user.
