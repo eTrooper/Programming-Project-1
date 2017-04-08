@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407052957) do
+ActiveRecord::Schema.define(version: 20170408054449) do
+
+  create_table "portfolios", force: :cascade do |t|
+    t.float    "cash"
+    t.float    "netWorth"
+    t.text     "stocks_data"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "stocks", force: :cascade do |t|
     t.string   "name"
@@ -20,17 +28,28 @@ ActiveRecord::Schema.define(version: 20170407052957) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.boolean  "status"
+    t.integer  "portfolio_id", null: false
+    t.integer  "stock_id",     null: false
+    t.integer  "volume"
+    t.string   "type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["portfolio_id"], name: "index_transactions_on_portfolio_id", unique: true
+    t.index ["stock_id"], name: "index_transactions_on_stock_id", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.float    "cash"
-    t.float    "netWorth"
-    t.string   "stockArray"
+    t.integer  "portfolio_id",    null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
     t.string   "remember_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["portfolio_id"], name: "index_users_on_portfolio_id", unique: true
   end
 
 end
