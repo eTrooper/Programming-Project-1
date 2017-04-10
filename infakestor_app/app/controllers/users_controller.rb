@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
+    
     if @user.save
       log_in @user
       flash[:success] = "Welcome to Infakestor!"
@@ -45,7 +46,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation, :cash = 1000000, :netWorth = 1000000)
+                                   :password_confirmation)
     end
     
     # Confirms a logged-in user.

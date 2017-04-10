@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170408054449) do
+ActiveRecord::Schema.define(version: 20170410111332) do
 
   create_table "portfolios", force: :cascade do |t|
-    t.float    "cash"
-    t.float    "netWorth"
+    t.float    "cash",        default: 1000000.0
+    t.float    "netWorth",    default: 1000000.0
     t.text     "stocks_data"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "stocks", force: :cascade do |t|

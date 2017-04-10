@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one portfolio, dependent: :destroy
+  after_create :create_default_portfolio
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   
@@ -41,4 +42,8 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
+    private
+    def create_default_portfolio
+      Portfolio.create(user_id: self.id)
+    end
 end
