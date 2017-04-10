@@ -1,13 +1,15 @@
 require 'csv'
+
+#placeholder used for cash and netWorth calculations
+
+
 csv_text = File.read(Rails.root.join('db', 'seeds', 'Tickers.csv'))
 csv = CSV.parse(csv_text, :headers => false, :encoding => 'ISO-8859-1')
 
 User.create!(name:  "Example User",
             email: "example@railstutorial.org",
             password:              "foobar",
-            password_confirmation: "foobar",
-            cash: 1000000,
-            netWorth: 1000000)
+            password_confirmation: "foobar")
 
 99.times do |n|
   name  = Faker::Name.name
@@ -16,9 +18,7 @@ User.create!(name:  "Example User",
   User.create!(name:  name,
               email: email,
               password:              password,
-              password_confirmation: password,
-              cash: 1000000,
-              netWorth: 1000000)
+              password_confirmation: password)
 end
 
 i = 0
@@ -54,12 +54,7 @@ csv.each do |row|
             i+=1
             count+=1
         end
-        
-        
-        
-        
-            
-              
+
     end
 
         
