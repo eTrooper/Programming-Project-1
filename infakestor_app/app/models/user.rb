@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_one portfolio
+  has_one portfolio, dependent: :destroy
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   
