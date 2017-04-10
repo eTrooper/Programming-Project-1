@@ -30,12 +30,13 @@ ActiveRecord::Schema.define(version: 20170410111332) do
 
   create_table "transactions", force: :cascade do |t|
     t.boolean  "status"
-    t.integer  "portfolio_id", null: false
-    t.integer  "stock_id",     null: false
+    t.integer  "portfolio_id",    null: false
+    t.integer  "stock_id",        null: false
+    t.float    "stock_buy_price"
     t.integer  "volume"
     t.string   "type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.index ["portfolio_id"], name: "index_transactions_on_portfolio_id", unique: true
     t.index ["stock_id"], name: "index_transactions_on_stock_id", unique: true
   end
