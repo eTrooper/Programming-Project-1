@@ -1,7 +1,7 @@
 require 'csv'
 
 #placeholder used for cash and netWorth calculations
-cashNetWorth = 1000000
+
 
 csv_text = File.read(Rails.root.join('db', 'seeds', 'Tickers.csv'))
 csv = CSV.parse(csv_text, :headers => false, :encoding => 'ISO-8859-1')
@@ -9,9 +9,7 @@ csv = CSV.parse(csv_text, :headers => false, :encoding => 'ISO-8859-1')
 User.create!(name:  "Example User",
             email: "example@railstutorial.org",
             password:              "foobar",
-            password_confirmation: "foobar",
-            cash: cashNetWorth,
-            netWorth: cashNetWorth)
+            password_confirmation: "foobar")
 
 99.times do |n|
   name  = Faker::Name.name
@@ -20,9 +18,7 @@ User.create!(name:  "Example User",
   User.create!(name:  name,
               email: email,
               password:              password,
-              password_confirmation: password,
-              cash: cashNetWorth,
-              netWorth: cashNetWorth)
+              password_confirmation: password)
 end
 
 csv.each do |row|
